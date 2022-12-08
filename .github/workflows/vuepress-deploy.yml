@@ -1,0 +1,18 @@
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: vuepress-deploy
+      uses: twt898xu/vuepress-blog@main
+      env:
+        ACCESS_TOKEN: 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
+        TARGET_REPO: twt898xu/twt898xu.github.io
+        TARGET_BRANCH: main
+        BUILD_SCRIPT: npm ci && npm run build
+        BUILD_DIR: docs/.vuepress/dist
+        COMMIT_MESSAGE:  Auto deploy by the Vuepress-deploy
