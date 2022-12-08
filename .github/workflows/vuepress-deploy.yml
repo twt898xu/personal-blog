@@ -5,12 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@master
 
     - name: vuepress-deploy
       uses: twt898xu/vuepress-blog@main
       env:
-        ACCESS_TOKEN: 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
+        ACCESS_TOKEN: ${{ secrets.VUEPRESS_BLOG }}
         TARGET_REPO: twt898xu/twt898xu.github.io
         TARGET_BRANCH: main
         BUILD_SCRIPT: npm ci && npm run build
