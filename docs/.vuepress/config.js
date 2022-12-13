@@ -9,7 +9,8 @@ module.exports = {
                 title:'Vue学习记录',
                 sidebarDepth:2,
                 children:[ 
-                    '/vue/v-if',
+                    '/vue/vif',
+                    '/vue/vpre&vonce',
                     '/vue/nextTick',
                 ]
 
