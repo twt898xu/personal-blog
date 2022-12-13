@@ -22,8 +22,7 @@ jobs:
     - name: vuepress-deploy
       uses: JamesIves/github-pages-deploy-action@releases/v4
       with:
-        token: ${{ secrets.VUEPRESS_BLOG }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.ACCESS_TOKEN }}
         branch: main
         repository-name: twt898xu/twt898xu.github.io
         folder: docs/.vuepress/dist
