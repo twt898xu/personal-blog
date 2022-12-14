@@ -3,6 +3,9 @@ module.exports = {
     port:8888,
     base:'/personal-blog/',
 
+    head:[
+        ['link',{ rel:'favicon',href:'/favicon.icon' }]
+    ],
     themeConfig:{
         nav: [
             { text: 'Vue - Explorer', target:'_blank', link: 'https://twt898xu.github.io/vue-template-explorer/' },
