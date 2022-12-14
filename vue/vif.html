@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>v-if 指令的原理与解析 | Blog</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/personal-blog/assets/css/0.styles.5bf95cb8.css" as="style"><link rel="preload" href="/personal-blog/assets/js/app.0fd8b1d5.js" as="script"><link rel="preload" href="/personal-blog/assets/js/2.04216cde.js" as="script"><link rel="preload" href="/personal-blog/assets/js/10.6aca2b82.js" as="script"><link rel="prefetch" href="/personal-blog/assets/js/11.fee2c696.js"><link rel="prefetch" href="/personal-blog/assets/js/3.98b94a56.js"><link rel="prefetch" href="/personal-blog/assets/js/4.98206207.js"><link rel="prefetch" href="/personal-blog/assets/js/5.dc461e28.js"><link rel="prefetch" href="/personal-blog/assets/js/6.1ddbd9df.js"><link rel="prefetch" href="/personal-blog/assets/js/7.3a62a53f.js"><link rel="prefetch" href="/personal-blog/assets/js/8.c3273c47.js"><link rel="prefetch" href="/personal-blog/assets/js/9.003bd786.js">
+    <link rel="stylesheet" href="/personal-blog/assets/css/0.styles.5bf95cb8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/personal-blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/personal-blog/vue/" class="sidebar-heading clickable router-link-active open"><span>Vue学习记录</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/personal-blog/vue/vif.html" aria-current="page" class="active sidebar-link">v-if 指令的原理与解析</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/personal-blog/vue/vif.html#解析阶段" class="sidebar-link">解析阶段</a></li><li class="sidebar-sub-header"><a href="/personal-blog/vue/vif.html#code生成阶段" class="sidebar-link">Code生成阶段</a></li><li class="sidebar-sub-header"><a href="/personal-blog/vue/vif.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/personal-blog/vue/vpre&amp;vonce.html" class="sidebar-link">v-pre 和 v-once 解析</a></li><li><a href="/personal-blog/vue/nextTick.html" class="sidebar-link">$nextTick 的原理与解析</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="v-if-指令的原理与解析"><a href="#v-if-指令的原理与解析" class="header-anchor">#</a> v-if 指令的原理与解析</h1> <p>与<code>v-show</code>不同，<code>v-if</code>并非在 vue 的运行时作用，而是在编译阶段进行了处理。下面是对这块实现的学习和总结</p> <h2 id="解析阶段"><a href="#解析阶段" class="header-anchor">#</a> 解析阶段</h2> <p>在 vue2 中，当调用 html 解析器 parseHtml 时有相关伪代码如下，对应源码位置是<code>src/complier/parser/index.js</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token parameter">template</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// stack 当前节点ast的栈</span>
+  <span class="token keyword">const</span> stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">//...</span>
+  <span class="token function">parseHtml</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 表示处理标签开始节点 如 &lt;div</span>
+    <span class="token function">start</span><span class="token punctuation">(</span><span class="token parameter">tag<span class="token punctuation">,</span> attrs<span class="token punctuation">,</span> unary<span class="token punctuation">,</span> start<span class="token punctuation">,</span> end</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">//...</span>
+      <span class="token comment">// element 表示当前 标签开始节点的 ast</span>
+      <span class="token keyword">let</span> <span class="token literal-property property">element</span><span class="token operator">:</span> ASTElement <span class="token operator">=</span> <span class="token function">createASTElement</span><span class="token punctuation">(</span>tag<span class="token punctuation">,</span> attrs<span class="token punctuation">,</span> currentParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//...</span>
+      <span class="token function">processIf</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//...</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>unary<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">closeElement</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> element <span class="token operator">=</span> stack<span class="token punctuation">[</span>stack<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token function">closeElement</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">processIf</span><span class="token punctuation">(</span><span class="token parameter">el</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//获取v-if属性并将该属性从ast中移除</span>
+  <span class="token keyword">const</span> exp <span class="token operator">=</span> <span class="token function">getAndRemoveAttr</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> <span class="token string">'v-if'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>exp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    el<span class="token punctuation">.</span>if <span class="token operator">=</span> exp<span class="token punctuation">;</span>
+    <span class="token function">addIfCondition</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">exp</span><span class="token operator">:</span> exp<span class="token punctuation">,</span>
+      <span class="token literal-property property">block</span><span class="token operator">:</span> el<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getAndRemoveAttr</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> <span class="token string">'v-else'</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      el<span class="token punctuation">.</span>else <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> elseif <span class="token operator">=</span> <span class="token function">getAndRemoveAttr</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> <span class="token string">'v-else-if'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>elseif<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      el<span class="token punctuation">.</span>elseif <span class="token operator">=</span> elseif<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们先看<code>processIf</code>的调用，从上面的代码我们可以看出，html 解析器在处理标签开始节点的时候，会同时生成标签开始节点的 ast,并调用<code>processIf</code>进行 ast 的 2 次处理。
+<code>processIf</code>的主要作用就是依次判断该 ast 是否含有<code>v-if</code> <code>v-else</code> <code>v-else-if</code>这 3 个指令，同时对 ast 进行编辑修饰。
+这里有个比较重要的逻辑是，调用了<code>addIfCondition</code>这个方法。这个方法比较简单，就是对 ast 的<code>ifConditions</code>属性进行编辑和修饰，将<code>v-if</code>可能的<code>block</code>添加到<code>ifConditions</code>这个属性中：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">addIfCondition</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">el</span><span class="token operator">:</span> ASTElement<span class="token punctuation">,</span> <span class="token literal-property property">condition</span><span class="token operator">:</span> ASTIfCondition</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>el<span class="token punctuation">.</span>ifConditions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    el<span class="token punctuation">.</span>ifConditions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  el<span class="token punctuation">.</span>ifConditions<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>condition<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们再回头看<code>parseHtml</code>中<code>closeElement</code>的调用逻辑。这个方法会存在 2 种调用情况</p> <ul><li>解析标签开始节点，且这个标签是自闭合标签</li> <li>解析标签结束节点</li></ul> <p>我们看下这个方法的实现</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">closeElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 说明当前节点是一个和根节点同级别的节点</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>stack<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> element <span class="token operator">!==</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//判断根节点是否有if 当前节点是否有 else elseif</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>if <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>element<span class="token punctuation">.</span>elseif <span class="token operator">||</span> element<span class="token punctuation">.</span>else<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">addIfCondition</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">exp</span><span class="token operator">:</span> element<span class="token punctuation">.</span>elseif<span class="token punctuation">,</span>
+        <span class="token literal-property property">block</span><span class="token operator">:</span> element<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token comment">//error</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>currentParent <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>element<span class="token punctuation">.</span>forbidden<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 当前节点存在 elseif else</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>element<span class="token punctuation">.</span>elseif <span class="token operator">||</span> element<span class="token punctuation">.</span>else<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">processIfConditions</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> currentParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      currentParent<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      element<span class="token punctuation">.</span>parent <span class="token operator">=</span> currentParent<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>上面对<code>closeElement</code>中对涉及<code>v-if</code>相关逻辑的一个提炼。可以看到，首先判断了当前处理的节点是否是一个和根节点同级别的节点。由于vue2中只允许存在一个根节点，所以必须要满足多个根节点的情况下只能渲染一个的条件。如果不满足条件则直接抛出错误。否则调用<code>addIfCondition</code>将当前节点作为<code>block</code>挂入到根节点的<code>ifConditions</code>属性下面。这里要注意哦，是根节点的<code>ifConditions</code>下面，这个很重要。</p> <p>接着继续判断如果当前节点有<code>else</code>or<code>elseif</code>则调用<code>processIfConditions</code>进行处理，同时传入当前父节点作为参数。注意是 <code>当前父节点</code> 不是 <code>当前节点的父节点</code>,其实看下面的条件就知道，<code>else</code> and <code>elseif</code>是不会作为子节点插入到ast树中的。</p> <p>我们接着看<code>processIfConditions</code>的实现</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">processIfConditions</span> <span class="token punctuation">(</span><span class="token parameter">el<span class="token punctuation">,</span> parent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> prev <span class="token operator">=</span> <span class="token function">findPrevElement</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>children<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>prev <span class="token operator">&amp;&amp;</span> prev<span class="token punctuation">.</span>if<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">addIfCondition</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">exp</span><span class="token operator">:</span> el<span class="token punctuation">.</span>elseif<span class="token punctuation">,</span>
+      <span class="token literal-property property">block</span><span class="token operator">:</span> el
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">//error</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里首先调用了<code>findPrevElement</code>获取到了当前节点的上一个节点，这个方法就是获取到<code>parent.children</code>的最后一个标签类型的节点，作为当前节点上一个节点<code>prev</code>。然后判断<code>prev</code>是否满足<code>if</code>条件，满足的话就将当前节点作为<code>block</code>添加到<code>prev</code>节点的<code>ifConditions</code>属性中，否则就抛出错误。现在是否理解为什么<code>v-else</code> <code>v-else-if</code>必须要接在<code>v-if</code>的标签后面了嘛！</p> <p>其实在编译阶段最主要的就是，在处理标签开始节点时给<code>v-if</code>的元素打上标签，并将该元素添加到自身的<code>ifConditions</code>属性中。然后在处理标签结束节点时将<code>v-else</code> <code>v-else-if</code>的元素，添加到对应的<code>v-if</code>元素的<code>ifConditions</code>属性中。</p> <h2 id="code生成阶段"><a href="#code生成阶段" class="header-anchor">#</a> Code生成阶段</h2> <p>说完了编译阶段，我们来看下<code>codegen</code>过程中发生了什么。源码对应的位置是<code>src/compiler/codegen/index.js</code> <code>codegen</code>的核心函数<code>genElement</code>大概如下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">genElement</span><span class="token punctuation">(</span><span class="token parameter">el<span class="token punctuation">,</span>state</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token comment">/**/</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//...</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token comment">/**/</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//...</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>if <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>el<span class="token punctuation">.</span>ifProcessed<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">genIf</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token comment">///</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>可以看到，<code>genElement</code>中一堆判断条件，其中有一条专门为<code>v-if</code>指令提供的，来看看<code>genIf</code>做了些什么</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">genIf</span> <span class="token punctuation">(</span><span class="token parameter">el<span class="token punctuation">,</span>state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  el<span class="token punctuation">.</span>ifProcessed <span class="token operator">=</span> <span class="token boolean">true</span> <span class="token comment">// 打上标记</span>
+  <span class="token keyword">return</span> <span class="token function">genIfConditions</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>ifConditions<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>genIf</code>的核心就是给当前ast加上一个<code>ifProcessed</code>的标记，防止被重复处理。然后调用<code>genIfConditions</code>方法,并传入当前节点的<code>ifConditions</code>的复制。
+我们再看下<code>genIfConditions</code>的代码</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">genIfConditions</span> <span class="token punctuation">(</span><span class="token parameter">conditions<span class="token punctuation">,</span>state</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>conditions<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'_e()'</span> <span class="token comment">//空vnode</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> condition <span class="token operator">=</span> conditions<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>condition<span class="token punctuation">.</span>exp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>condition<span class="token punctuation">.</span>exp<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)?</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>
+      <span class="token comment">//本质是调用genElement</span>
+      <span class="token function">genTernaryExp</span><span class="token punctuation">(</span>condition<span class="token punctuation">.</span>block<span class="token punctuation">)</span>
+    <span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>
+      <span class="token function">genIfConditions</span><span class="token punctuation">(</span>conditions<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+    <span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">//本质是调用genElement</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">genTernaryExp</span><span class="token punctuation">(</span>condition<span class="token punctuation">.</span>block<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>首先判断了<code>conditions</code>是否为空，为空的话就返回一个空vnode的函数调用字符串。然后取出<code>conditions</code>数组中第一个元素<code>condition</code>。第一次调用这个方法时这个<code>condition</code>对应的<code>v-if</code>作用的元素。这里可以仔细思考下一下。
+然后判断<code>exp</code>是否存在，这个其实就是<code>v-if</code> <code>v-else-if</code>对应的条件。如果条件存在，则返回一个3元表达式字符串，且调用了<code>genElement</code>生成一个函数字符串和递归调用<code>genIfConditions</code>方法，继续传入<code>conditions</code>。如果条件不存在(v-else对应的情况)则直接调用<code>genElement</code>返回一个函数字符串。
+其实到这里<code>v-if</code>的逻辑就分析完了，<code>v-if</code>在经过编译后本质就是根据我们写的条件生成了一个符合条件的3元表达式而已。这样是不是就理解了为什么说<code>v-if</code>条件值为假，元素是不会渲染的了呢！</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <ul><li>在html解析阶段，在解析标签开始节点时处理节点的<code>v-if</code>绑定，给ast添加标记，将节点push到自身的<code>ifConditions</code>属性中</li> <li>在html解析阶段，在解析标签结束节点时，处理节点的<code>v-else</code> <code>v-else-if</code>绑定，给ast添加标记，将节点push到对应的<code>v-if</code>节点的<code>ifConditions</code>属性中</li> <li>在代码生成阶段，判断ast是否有<code>v-if</code>标记，然后递归的生成<code>ifConditions</code>中<code>block</code>对应的函数字符串，然后返回一个符合预期的3元表达式</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/personal-blog/vue/vpre&amp;vonce.html">
+        v-pre 和 v-once 解析
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/personal-blog/assets/js/app.0fd8b1d5.js" defer></script><script src="/personal-blog/assets/js/2.04216cde.js" defer></script><script src="/personal-blog/assets/js/10.6aca2b82.js" defer></script>
+  </body>
+</html>
