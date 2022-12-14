@@ -4,7 +4,7 @@ module.exports = {
     base:'/personal-blog/',
 
     head:[
-        ['link',{ rel:'favicon',href:'/favicon.ico' }]
+        ['link',{ rel:'icon',href:'/favicon.ico' }]
     ],
     themeConfig:{
         nav: [
