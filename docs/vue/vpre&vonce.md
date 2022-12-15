@@ -1,4 +1,4 @@
-# v-pre 和 v-once 解析
+# v-pre 和 v-once 的浅析
 
 ## v-pre
 

@@ -18,6 +18,7 @@ module.exports = {
                 children:[ 
                     '/vue/vif',
                     '/vue/vpre&vonce',
+                    '/vue/event',
                     '/vue/nextTick',
                 ]
 
