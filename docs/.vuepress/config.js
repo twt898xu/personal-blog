@@ -13,7 +13,7 @@ module.exports = {
         sidebar:[
             {   
                 path:'/vue/',
-                title:'Vue学习记录',
+                title:'Vue2学习记录(v2.6.14)',
                 sidebarDepth:2,
                 children:[ 
                     '/vue/vif',
