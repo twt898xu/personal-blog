@@ -20,6 +20,7 @@ module.exports = {
                     '/vue/vpre&vonce',
                     '/vue/event',
                     '/vue/nextTick',
+                    '/vue/vmodel',
                 ]
 
             }
