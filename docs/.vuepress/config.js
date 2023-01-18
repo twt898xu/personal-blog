@@ -21,8 +21,16 @@ module.exports = {
                     '/vue/event',
                     '/vue/nextTick',
                     '/vue/vmodel',
+                    '/vue/slot',
                 ]
-
+            },
+            {
+                path:'/vue-router/',
+                title:'VueRouter学习记录(v3.6.5)',
+                sidebarDepth:2,
+                children:[
+                    '/vue-router/install'
+                ]
             }
         ]
     }
