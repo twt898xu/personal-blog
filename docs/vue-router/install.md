@@ -88,7 +88,7 @@ destroyed () {
 }
 ```
 
-这段代码首先判断了当前`vue`实例的`$options`对象上有无`router`属性，如有，则说明该实例是`vue`的根实例，则调用`router`对象的`init`方法和定义`_router`和`_route`属性。`init`方法我们后面再分析。若当前实例不是根实例，则从父组件上获取到根路由对象并赋值。接着调用`registerInstance`方法
+这段代码首先判断了当前`vue`实例的`$options`对象上有无`router`属性，如有，则说明该实例是`vue`的根实例。初始化属性`_routerRoot`为当前`vue`根实例，接着为根实例添加`_router` `route`属性，再调用`router`对象的`init`方法，`init`方法我们后面再分析。若当前实例不是根实例，则从父组件上获取到根路由对象并赋值。接着调用`registerInstance`方法
 
 ```js
 const registerInstance = (vm, callVal) => {
@@ -99,13 +99,13 @@ const registerInstance = (vm, callVal) => {
 };
 ```
 
-这个方法是调用定义在组件`vnode`上的`registerRouteInstance`方法，这是`router-view`组件中定义的方法，后面在具体分析
+这个方法是调用定义在父组件`vnode`上的`registerRouteInstance`方法，这是`router-view`组件中定义的方法，后面在具体分析
 
 `destroyed`钩子也是调用了`registerInstance`方法，后面分析组件在提
 
 ## $router & $route
 
-这 2 个属性分别指向的就是我们最初`new VueRouter`构建出来的实例`_router`和`_router.history.current`属性。所以`$router`代表的`VueRouter`的实例，`$route`代表的是当前激活路由对象。他们的关系是`$router.history.current === $route`
+由代码得知，这2个属性其实就是当前`vue`根实例上的2个属性，分别指向根实例的`_router` `_route`属性。他们的关系是`$router.history.current === $route`，`$router` 其实就是`VueRouter`这个对象的实例
 
 ## 全局组件
 

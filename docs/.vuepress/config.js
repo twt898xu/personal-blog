@@ -29,7 +29,8 @@ module.exports = {
                 title:'VueRouter学习记录(v3.6.5)',
                 sidebarDepth:2,
                 children:[
-                    '/vue-router/install'
+                    '/vue-router/install',
+                    '/vue-router/router'
                 ]
             }
         ]
