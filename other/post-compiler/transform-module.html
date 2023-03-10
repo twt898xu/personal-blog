@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>按需加载 | Blog</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/personal-blog/favicon.ico">
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/personal-blog/assets/css/0.styles.5bf95cb8.css" as="style"><link rel="preload" href="/personal-blog/assets/js/app.a1612bd8.js" as="script"><link rel="preload" href="/personal-blog/assets/js/2.04216cde.js" as="script"><link rel="preload" href="/personal-blog/assets/js/11.65a30262.js" as="script"><link rel="prefetch" href="/personal-blog/assets/js/10.47424084.js"><link rel="prefetch" href="/personal-blog/assets/js/12.301a3bed.js"><link rel="prefetch" href="/personal-blog/assets/js/13.694c41df.js"><link rel="prefetch" href="/personal-blog/assets/js/14.780cdfbc.js"><link rel="prefetch" href="/personal-blog/assets/js/15.1b0dee0c.js"><link rel="prefetch" href="/personal-blog/assets/js/16.fab8200b.js"><link rel="prefetch" href="/personal-blog/assets/js/17.c3d40e40.js"><link rel="prefetch" href="/personal-blog/assets/js/18.6864d802.js"><link rel="prefetch" href="/personal-blog/assets/js/19.065b30ce.js"><link rel="prefetch" href="/personal-blog/assets/js/20.47686141.js"><link rel="prefetch" href="/personal-blog/assets/js/21.0fc10895.js"><link rel="prefetch" href="/personal-blog/assets/js/22.678083b8.js"><link rel="prefetch" href="/personal-blog/assets/js/23.19e5043b.js"><link rel="prefetch" href="/personal-blog/assets/js/3.5c5c642f.js"><link rel="prefetch" href="/personal-blog/assets/js/4.98206207.js"><link rel="prefetch" href="/personal-blog/assets/js/5.dc461e28.js"><link rel="prefetch" href="/personal-blog/assets/js/6.1ddbd9df.js"><link rel="prefetch" href="/personal-blog/assets/js/7.3e724915.js"><link rel="prefetch" href="/personal-blog/assets/js/8.09d0250b.js"><link rel="prefetch" href="/personal-blog/assets/js/9.74dc40ce.js">
+    <link rel="stylesheet" href="/personal-blog/assets/css/0.styles.5bf95cb8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/personal-blog/" class="home-link router-link-active"><!----> <span class="site-name">Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://twt898xu.github.io/vue-template-explorer/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue - Explorer
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://twt898xu.github.io/vue-template-explorer/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue - Explorer
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/personal-blog/vue/" class="sidebar-heading clickable"><span>Vue2学习记录(v2.6.14)</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/personal-blog/vue-router/" class="sidebar-heading clickable"><span>VueRouter学习记录(v3.6.5)</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/personal-blog/other/" class="sidebar-heading clickable router-link-active open"><span>其他</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><a href="/personal-blog/other/post-compiler/" class="sidebar-heading clickable router-link-active open"><span>按需加载与后编译分析</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/personal-blog/other/post-compiler/transform-module.html" aria-current="page" class="active sidebar-link">按需加载</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/personal-blog/other/post-compiler/transform-module.html#webpack插件分析" class="sidebar-link">webpack插件分析</a></li><li class="sidebar-sub-header"><a href="/personal-blog/other/post-compiler/transform-module.html#babel插件分析" class="sidebar-link">babel插件分析</a></li><li class="sidebar-sub-header"><a href="/personal-blog/other/post-compiler/transform-module.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/personal-blog/other/post-compiler/post-compiler.html" class="sidebar-link">所谓的后编译</a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="按需加载"><a href="#按需加载" class="header-anchor">#</a> 按需加载</h1> <h2 id="webpack插件分析"><a href="#webpack插件分析" class="header-anchor">#</a> webpack插件分析</h2> <p>直接看<code>webpack-transform-modules-plugin</code>的代码，核心代码如下</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">runGetter</span><span class="token punctuation">(</span><span class="token parameter">compiler<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> transformModules <span class="token operator">=</span> that<span class="token punctuation">.</span><span class="token function">_collectTransformModules</span><span class="token punctuation">(</span>compiler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>transformModules<span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> rules <span class="token operator">=</span> compiler<span class="token punctuation">.</span>options<span class="token punctuation">.</span>module<span class="token punctuation">.</span>rules<span class="token punctuation">;</span>
+    rules <span class="token operator">&amp;&amp;</span> rules<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>iterRule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">interRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">doRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">updateLoaderConf</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">updateRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">updateVueLoaderOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>beforeRun<span class="token punctuation">.</span><span class="token function">tapAsync</span><span class="token punctuation">(</span><span class="token string">'TransformModulesPlugin'</span><span class="token punctuation">,</span> runGetter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>watchRun<span class="token punctuation">.</span><span class="token function">tapAsync</span><span class="token punctuation">(</span><span class="token string">'TransformModulesPlugin'</span><span class="token punctuation">,</span> runGetter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>_collectTransformModules</code>方法的核心是获取<code>transformModules</code>的配置，通过查找查找项目的<code>package.json</code>配置，找到对应的<code>transformModules</code>配置并添加后返回，再递归的查找项目的<code>dependencies</code>的配置，找出所有的<code>transformModules</code>配置后并返回。</p> <p>接着获取到当前<code>webpack</code>的所有<code>module.rules</code>配置，并循环执行<code>interRule</code>方法</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">iterRule</span><span class="token punctuation">(</span><span class="token parameter">rule<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">doRule</span><span class="token punctuation">(</span>rule<span class="token punctuation">,</span> <span class="token string">'loader'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">doRule</span><span class="token punctuation">(</span>rule<span class="token punctuation">,</span> <span class="token string">'use'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>rule<span class="token punctuation">.</span>oneOf<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>rule<span class="token punctuation">.</span>oneOf<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      rule<span class="token punctuation">.</span>oneOf <span class="token operator">=</span> <span class="token punctuation">[</span>rule<span class="token punctuation">.</span>oneOf<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    rule<span class="token punctuation">.</span>oneOf<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>iterRule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">doRule</span><span class="token punctuation">(</span><span class="token parameter">rule<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> conf <span class="token operator">=</span> rule<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>conf<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>conf<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      conf<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">loaderConf<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> loaderConf <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          loaderConf <span class="token operator">=</span> conf<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">loader</span><span class="token operator">:</span> loaderConf<span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">updateLoaderConf</span><span class="token punctuation">(</span>loaderConf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">===</span> <span class="token string">'use'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> conf <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          conf <span class="token operator">=</span> rule<span class="token punctuation">.</span>use <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token literal-property property">loader</span><span class="token operator">:</span> conf<span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">updateLoaderConf</span><span class="token punctuation">(</span>conf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">updateLoaderConf</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">updateLoaderConf</span><span class="token punctuation">(</span><span class="token parameter">rule</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>util<span class="token punctuation">.</span><span class="token function">loaderNameMatches</span><span class="token punctuation">(</span>rule<span class="token punctuation">,</span> <span class="token string">'babel-loader'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">updateRule</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>util<span class="token punctuation">.</span><span class="token function">loaderNameMatches</span><span class="token punctuation">(</span>rule<span class="token punctuation">,</span> <span class="token string">'vue-loader'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">updateVueLoaderOptions</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>因为<code>loader</code>的有多种配置方法，<code>iterRule</code>就是根据不同的配置方式调用<code>doRule</code>这个方法。<code>doRule</code>方法核心是调用<code>updateLoaderConf</code>方法，根据配置的不同处理不同的入参.<code>updateLoaderConf</code>这个方法，根据<code>rule</code>来判断是<code>vue-loader</code>还是<code>babel-loader</code>来调用不同的处理方法</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">updateRule</span><span class="token punctuation">(</span><span class="token parameter">conf</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>conf<span class="token punctuation">.</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    conf<span class="token punctuation">.</span>options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>plugins<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>plugins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>plugins<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>plugins <span class="token operator">=</span> <span class="token punctuation">[</span>conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>plugins<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">'babel-plugin-transform-modules'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> plugins <span class="token operator">=</span> conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>plugins<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> added <span class="token operator">=</span> plugins<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">plugin</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> plugin <span class="token operator">===</span> name <span class="token operator">||</span> plugin<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">===</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">!</span>added <span class="token operator">&amp;&amp;</span> plugins<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">[</span>name<span class="token punctuation">,</span> transformModules<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">updateVueLoaderOptions</span><span class="token punctuation">(</span><span class="token parameter">conf</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>conf<span class="token punctuation">.</span>options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    conf<span class="token punctuation">.</span>options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>loaders<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>loaders <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">var</span> jsConf <span class="token operator">=</span> conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>loaders<span class="token punctuation">.</span>js<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>jsConf<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    jsConf <span class="token operator">=</span> conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>loaders<span class="token punctuation">.</span>js <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> jsConf <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>jsConf <span class="token operator">===</span> <span class="token string">'babel-loader'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// reset</span>
+      jsConf <span class="token operator">=</span> conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>loaders<span class="token punctuation">.</span>js <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      jsConf <span class="token operator">=</span> conf<span class="token punctuation">.</span>options<span class="token punctuation">.</span>loaders<span class="token punctuation">.</span>js <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token literal-property property">loader</span><span class="token operator">:</span> jsConf<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> jsConf <span class="token operator">===</span> <span class="token string">'object'</span> <span class="token operator">&amp;&amp;</span> jsConf<span class="token punctuation">.</span>loader <span class="token operator">===</span> <span class="token string">'babel-loader'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    jsConf<span class="token punctuation">.</span>plugins <span class="token operator">=</span> jsConf<span class="token punctuation">.</span>plugins <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    jsConf<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'babel-plugin-transform-modules'</span><span class="token punctuation">,</span> transformModules<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    jsConf<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'babel-plugin-transform-modules'</span><span class="token punctuation">,</span> transformModules<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>updateRule</code>方法用来处理<code>babel-loader</code>核心就是给<code>babel-loader</code>的参数添加上<code>babel-plugin-transform-modules</code>这个 plugin。类型如下</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//处理前</span>
+<span class="token punctuation">{</span> <span class="token literal-property property">loader</span><span class="token operator">:</span><span class="token string">'babel-loader'</span> <span class="token punctuation">}</span>
+<span class="token comment">//处理后</span>
+<span class="token punctuation">{</span>
+    <span class="token literal-property property">loader</span><span class="token operator">:</span><span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token literal-property property">plugins</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'babel-plugin-transform-modules'</span><span class="token punctuation">,</span><span class="token punctuation">{</span> <span class="token comment">/* transformModule */</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>updateVueLoaderOptions</code>方法用来处理<code>vue-loader</code>的参数，主要是添加<code>babel-loader</code>配置</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//处理前</span>
+<span class="token punctuation">{</span> <span class="token literal-property property">loader</span><span class="token operator">:</span><span class="token string">'vue-loader'</span> <span class="token punctuation">}</span>
+<span class="token comment">//处理后</span>
+<span class="token punctuation">{</span>
+    <span class="token literal-property property">loader</span><span class="token operator">:</span><span class="token string">'vue-loader'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token literal-property property">loaders</span><span class="token operator">:</span><span class="token punctuation">{</span>
+            <span class="token literal-property property">js</span><span class="token operator">:</span><span class="token punctuation">[</span>
+                <span class="token punctuation">{</span>
+                    <span class="token literal-property property">loader</span><span class="token operator">:</span><span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">options</span><span class="token operator">:</span><span class="token punctuation">{</span>
+                        <span class="token literal-property property">plugins</span><span class="token operator">:</span><span class="token punctuation">[</span> <span class="token string">'babel-plugin-transform-modules'</span><span class="token punctuation">,</span><span class="token punctuation">{</span> <span class="token comment">/* transformModule */</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>所以，<code>webpack-transform-modules-plugin</code>核心就是给<code>webpack</code>的<code>babel-loader</code> <code>vue-loader</code>添加额外的参数。其实这部分我们在自己项目的<code>webpack</code>中就可以添加，唯一实现的增强就是递归去查找所有依赖中的<code>transformModule</code>配置</p> <h2 id="babel插件分析"><a href="#babel插件分析" class="header-anchor">#</a> babel插件分析</h2> <p><code>babel-plugin-transform-modules</code>是一个<code>babel</code>插件，核心是处理<code>import</code>语句的。以一个例子来说明</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 假设上面的transformModule配置如下</span>
+<span class="token keyword">var</span> transformModules <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">'element-ui'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">kebabCase</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token string">'element-ui/src/components/${member}'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 导入方式如下</span>
+<span class="token keyword">import</span> ElementUI<span class="token punctuation">,</span> <span class="token punctuation">{</span> Message <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'element-ui'</span><span class="token punctuation">;</span>
+</code></pre></div><p>上面的代码，带入到<code>babel-plugin-transform-modules</code>这个插件的源码中进行理解</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">babel</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> types <span class="token operator">=</span> babel<span class="token punctuation">.</span>types<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">visitor</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token function-variable function">ImportDeclaration</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">path<span class="token punctuation">,</span> state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> source <span class="token operator">=</span> path<span class="token punctuation">.</span>node<span class="token punctuation">.</span>source<span class="token punctuation">.</span>value<span class="token punctuation">;</span> <span class="token comment">//导入的源 例子中的 ‘element-ui’</span>
+        <span class="token comment">// state.opts plugin的参数 就是 transformModules 这个对象</span>
+        <span class="token comment">// 这段是处理相对路径的导入 不作分析</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>source <span class="token keyword">in</span> state<span class="token punctuation">.</span>opts<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> source<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^\.{0,2}\/</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          source <span class="token operator">=</span> pathLib<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>
+            pathLib<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>
+              source<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'/'</span>
+                <span class="token operator">?</span> <span class="token string">''</span>
+                <span class="token operator">:</span> pathLib<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>file<span class="token punctuation">.</span>opts<span class="token punctuation">.</span>filename<span class="token punctuation">)</span><span class="token punctuation">,</span>
+              source<span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>source <span class="token keyword">in</span> state<span class="token punctuation">.</span>opts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">var</span> opts <span class="token operator">=</span> state<span class="token punctuation">.</span>opts<span class="token punctuation">[</span>source<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+          <span class="token keyword">var</span> transforms <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token keyword">var</span> styleTransforms <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+          <span class="token comment">// 全量导入的节点 例子中的 ElementUI</span>
+          <span class="token keyword">var</span> fullImports <span class="token operator">=</span> path<span class="token punctuation">.</span>node<span class="token punctuation">.</span>specifiers<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">specifier</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> specifier<span class="token punctuation">.</span>type <span class="token operator">!==</span> <span class="token string">'ImportSpecifier'</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment">// 成员导入的节点 例子中的 Message</span>
+          <span class="token keyword">var</span> memberImports <span class="token operator">=</span> path<span class="token punctuation">.</span>node<span class="token punctuation">.</span>specifiers<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">specifier</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> specifier<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'ImportSpecifier'</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>fullImports<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>memberImports<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token comment">// 如果一个导入语句中既有全局导入也有成员导入 那么往 transform 中插入一条全量导入</span>
+              <span class="token comment">// Exp: import ElementUI from 'element-ui'</span>
+              transforms<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+                types<span class="token punctuation">.</span><span class="token function">importDeclaration</span><span class="token punctuation">(</span>
+                  fullImports<span class="token punctuation">,</span>
+                  types<span class="token punctuation">.</span><span class="token function">stringLiteral</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 处理样式导入</span>
+            <span class="token function">handleStyleImport</span><span class="token punctuation">(</span>opts<span class="token punctuation">,</span> styleTransforms<span class="token punctuation">,</span> types<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">var</span> hasFullStyleImports <span class="token operator">=</span> styleTransforms<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          memberImports<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 根据配置处理name</span>
+            <span class="token keyword">var</span> importName <span class="token operator">=</span> memberImport<span class="token punctuation">.</span>imported<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>opts<span class="token punctuation">.</span>camelCase<span class="token punctuation">)</span> importName <span class="token operator">=</span> <span class="token function">camel</span><span class="token punctuation">(</span>importName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>opts<span class="token punctuation">.</span>kebabCase<span class="token punctuation">)</span> importName <span class="token operator">=</span> <span class="token function">kebab</span><span class="token punctuation">(</span>importName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>opts<span class="token punctuation">.</span>snakeCase<span class="token punctuation">)</span> importName <span class="token operator">=</span> <span class="token function">snake</span><span class="token punctuation">(</span>importName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 生成替换节点source字符串</span>
+            <span class="token comment">// 'element-ui/src/components/message'</span>
+            <span class="token keyword">var</span> replace <span class="token operator">=</span> <span class="token function">transform</span><span class="token punctuation">(</span>opts<span class="token punctuation">.</span>transform<span class="token punctuation">,</span> importName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 是否保存默认语法</span>
+            <span class="token comment">// 不保存则转成 default语法 import message</span>
+            <span class="token keyword">var</span> newImportSpecifier <span class="token operator">=</span> opts<span class="token punctuation">.</span>skipDefaultConversion
+              <span class="token operator">?</span> memberImport
+              <span class="token operator">:</span> types<span class="token punctuation">.</span><span class="token function">importDefaultSpecifier</span><span class="token punctuation">(</span>
+                  types<span class="token punctuation">.</span><span class="token function">identifier</span><span class="token punctuation">(</span>memberImport<span class="token punctuation">.</span>local<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 最后生成完整的导入语句节点</span>
+            <span class="token comment">// import message from 'element-ui/src/components/message'</span>
+            transforms<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+              types<span class="token punctuation">.</span><span class="token function">importDeclaration</span><span class="token punctuation">(</span>
+                <span class="token punctuation">[</span>newImportSpecifier<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                types<span class="token punctuation">.</span><span class="token function">stringLiteral</span><span class="token punctuation">(</span>replace<span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 判断是否有全量导入样式的节点</span>
+            <span class="token comment">// 如果没有则处理成员的样式节点</span>
+            <span class="token operator">!</span>hasFullStyleImports <span class="token operator">&amp;&amp;</span>
+              <span class="token function">handleStyleImport</span><span class="token punctuation">(</span>opts<span class="token punctuation">,</span> styleTransforms<span class="token punctuation">,</span> types<span class="token punctuation">,</span> importName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token comment">// 最后替换或插入语句，本例中最后的语句为</span>
+          <span class="token comment">// import ElementUI from 'element-ui'</span>
+          <span class="token comment">// import message from 'element-ui/src/components/message'</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>transforms<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            path<span class="token punctuation">.</span><span class="token function">replaceWithMultiple</span><span class="token punctuation">(</span>transforms<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>styleTransforms<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>styleTransforms<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            path<span class="token punctuation">.</span><span class="token function">insertAfter</span><span class="token punctuation">(</span>styleTransforms<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>可见得，<code>babel-plugin-transform-modules</code>这个插件主要就是对<code>import</code>的语句做了处理，再看下<code>handleStyleImport</code>的处理</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">handleStyleImport</span><span class="token punctuation">(</span><span class="token parameter">opts<span class="token punctuation">,</span> styleTransforms<span class="token punctuation">,</span> types<span class="token punctuation">,</span> importName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>opts<span class="token punctuation">.</span>style<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// parseStyleOption 返回 { name:'styleName',ignore:[] } 这样标准格式的对象</span>
+    <span class="token keyword">var</span> styleOption <span class="token operator">=</span> <span class="token function">parseStyleOption</span><span class="token punctuation">(</span>opts<span class="token punctuation">.</span>style<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> styleName <span class="token operator">=</span> styleOption<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> ignore <span class="token operator">=</span> styleOption<span class="token punctuation">.</span>ignore<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> hasImportName <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>importName<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>importName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      importName <span class="token operator">=</span> styleName<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ignore<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>importName<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 这里返回的结果与是否是全量导入有关</span>
+    <span class="token comment">// 全量导入 ‘element-ui/src/components/style.css’</span>
+    <span class="token comment">// 成员导入 ‘element-ui/src/components/input/style.css’</span>
+    <span class="token keyword">var</span> replace <span class="token operator">=</span> <span class="token function">transform</span><span class="token punctuation">(</span>
+      opts<span class="token punctuation">.</span>transform<span class="token punctuation">,</span>
+      importName<span class="token punctuation">,</span>
+      styleName<span class="token punctuation">,</span>
+      hasImportName<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 非标记符的导入方式 exp: import ‘element-ui/src/components/style.css’</span>
+    styleTransforms<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+      types<span class="token punctuation">.</span><span class="token function">importDeclaration</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> types<span class="token punctuation">.</span><span class="token function">stringLiteral</span><span class="token punctuation">(</span>replace<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <ul><li><code>webpack-transform-modules-plugin</code>作为一个<code>webpack</code>插件，主要作用是动态的修改<code>module.rules</code>里面的<code>loader</code>配置，给<code>babel-loader</code>加上<code>babel-plugin-transform-modules</code>这个插件，给<code>vue-loader</code>的<code>options.loader.js</code>添加<code>babel-loader</code>。且会递归的的查看依赖的<code>package.json</code>找到<code>transformModules</code>配置，作为插件的参数</li> <li><code>babel-plugin-transform-modules</code>插件作为一个<code>babel</code>插件，主要是分析<code>import</code>语句。再根据传入的参数修改添加新的<code>import</code>语句，实现开发过程中简化导入语法的目的</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/personal-blog/vue-router/router.html" class="prev">
+        Router 对象实例化
+      </a></span> <span class="next"><a href="/personal-blog/other/post-compiler/post-compiler.html">
+        所谓的后编译
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/personal-blog/assets/js/app.a1612bd8.js" defer></script><script src="/personal-blog/assets/js/2.04216cde.js" defer></script><script src="/personal-blog/assets/js/11.65a30262.js" defer></script>
+  </body>
+</html>
