@@ -32,6 +32,22 @@ module.exports = {
                     '/vue-router/install',
                     '/vue-router/router'
                 ]
+            },
+            {
+                path:'/other/',
+                title:'其他',
+                sidebarDepth:3,
+                children:[
+                    {
+                        path:'/other/post-compiler/',
+                        title:'按需加载与后编译分析',
+                        sidebarDepth:2,
+                        children:[
+                            '/other/post-compiler/transform-module',
+                            '/other/post-compiler/post-compiler'
+                        ]
+                    }
+                ]
             }
         ]
     }
