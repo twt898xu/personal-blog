@@ -22,6 +22,8 @@ module.exports = {
                     '/vue/nextTick',
                     '/vue/vmodel',
                     '/vue/slot',
+                    '/vue/slot-diff',
+                    '/vue/create-component'
                 ]
             },
             {
