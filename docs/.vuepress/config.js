@@ -48,6 +48,13 @@ module.exports = {
                             '/other/post-compiler/transform-module',
                             '/other/post-compiler/post-compiler'
                         ]
+                    },
+                    {
+                        path:'/other/webpack/',
+                        title:'Webpack的原理分析',
+                        children:[
+                            '/other/webpack/runtime'
+                        ]
                     }
                 ]
             }
